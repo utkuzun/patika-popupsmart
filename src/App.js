@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+
+import './App.css'
+import TodoForm from './components/TodoForm'
+import TodoList from './components/TodoList'
+
+import todosServices from './services/todos'
 
 function App() {
+  const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    todosServices.getAll().then((data) => setTodos(data))
+  }, [])
+
+  const addTodo = async (content) => {
+    const todoToAdd = { content, isCompleted: false }
+    const todoAdded = await todosServices.create(todoToAdd)
+
+    setTodos([...todos, todoAdded])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <TodoForm addTodo={addTodo} />
+      <TodoList todos={todos} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
