@@ -38,6 +38,7 @@ const TodoForm = forwardRef(({ addTodo, updateTodo }, refs) => {
         <input
           type='text'
           value={content}
+          minLength='3'
           onChange={(e) => setContent(e.target.value)}
         />
         <button type='submit'>{mode === 'submit' ? 'submit' : 'edit'}</button>

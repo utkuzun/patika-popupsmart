@@ -1,7 +1,12 @@
 import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+import {
+  faTrash,
+  faEdit,
+  faCheck,
+  faX,
+} from '@fortawesome/free-solid-svg-icons'
 
 const Todo = ({ todo, removeTodo, setFormToUpdate, updateTodo }) => {
   const { id, content, isCompleted } = todo
@@ -34,10 +39,7 @@ const Todo = ({ todo, removeTodo, setFormToUpdate, updateTodo }) => {
 
   return (
     <section>
-      <div
-        className={`todo-content ${isCompleted ? 'completed' : ''}`}
-        onClick={updateIsComplete}
-      >
+      <div className={`todo-content ${isCompleted ? 'completed' : ''}`}>
         <h4>{content}</h4>
       </div>
       <div>
@@ -46,6 +48,13 @@ const Todo = ({ todo, removeTodo, setFormToUpdate, updateTodo }) => {
         </button>
         <button onClick={handleUpdate}>
           <FontAwesomeIcon icon={faEdit} />
+        </button>
+        <button onClick={updateIsComplete}>
+          {!isCompleted ? (
+            <FontAwesomeIcon icon={faCheck} />
+          ) : (
+            <FontAwesomeIcon icon={faX} />
+          )}
         </button>
       </div>
     </section>
