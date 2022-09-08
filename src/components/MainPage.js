@@ -7,10 +7,20 @@ import TodoList from './TodoList'
 
 import todosServices from '../services/todos'
 
-const MainPage = ({ user }) => {
+const MainPage = () => {
   const [todos, setTodos] = useState([])
 
   const formRef = useRef()
+
+  const [user, setUser] = useState({})
+
+  useState(() => {
+    const userExists = window.localStorage.getItem('userTodosPatika')
+
+    if (userExists) {
+      setUser(JSON.parse(userExists))
+    }
+  })
 
   useEffect(() => {
     todosServices.getAll().then((data) => setTodos(data))
