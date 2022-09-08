@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
 
-const Todo = ({ todo, removeTodo, setFormToUpdate }) => {
+const Todo = ({ todo, removeTodo, setFormToUpdate, updateTodo }) => {
   const { id, content, isCompleted } = todo
 
   const handleRemove = async () => {
@@ -24,12 +24,21 @@ const Todo = ({ todo, removeTodo, setFormToUpdate }) => {
     }
   }
 
+  const updateIsComplete = async () => {
+    try {
+      await updateTodo(id, { content, id, isCompleted: !isCompleted })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <section>
-      <div>
-        <h4>
-          {id} {content} {isCompleted}
-        </h4>
+      <div
+        className={`todo-content ${isCompleted ? 'completed' : ''}`}
+        onClick={updateIsComplete}
+      >
+        <h4>{content}</h4>
       </div>
       <div>
         <button onClick={handleRemove}>

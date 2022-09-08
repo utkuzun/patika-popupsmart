@@ -2,7 +2,7 @@ import React from 'react'
 
 import Todo from './Todo'
 
-const TodoList = ({ todos, removeTodo, setFormToUpdate }) => {
+const TodoList = ({ todos, removeTodo, setFormToUpdate, updateTodo }) => {
   return (
     <section>
       <h3>todos</h3>
@@ -12,6 +12,7 @@ const TodoList = ({ todos, removeTodo, setFormToUpdate }) => {
           todo={todo}
           removeTodo={removeTodo}
           setFormToUpdate={setFormToUpdate}
+          updateTodo={updateTodo}
         />
       ))}
     </section>

@@ -49,6 +49,7 @@ const App = () => {
         todos={todos}
         removeTodo={removeTodo}
         setFormToUpdate={setFormToUpdate}
+        updateTodo={updateTodo}
       />
     </div>
   )

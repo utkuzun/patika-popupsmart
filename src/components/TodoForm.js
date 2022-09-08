@@ -20,12 +20,13 @@ const TodoForm = forwardRef(({ addTodo, updateTodo }, refs) => {
 
     try {
       await updateTodo(editTodo.id, { ...editTodo, content })
+      e.preventDefault()
+      setContent('')
+      setMode('submit')
+      setEditTodo({})
     } catch (error) {
       console.log(error)
     }
-    e.preventDefault()
-    setContent('')
-    setMode('submit')
   }
 
   useImperativeHandle(refs, () => {

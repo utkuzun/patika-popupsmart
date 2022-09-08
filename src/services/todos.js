@@ -18,7 +18,6 @@ const remove = async (id) => {
 }
 
 const update = async (id, todo) => {
-  console.log(id, todo)
   const { data: todoUpdated } = await axios.put(`${baseUrl}/${id}`, todo)
   return todoUpdated
 }
