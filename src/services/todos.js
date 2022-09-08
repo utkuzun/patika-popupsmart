@@ -17,4 +17,10 @@ const remove = async (id) => {
   return todoRemoved
 }
 
-export default { getAll, create, remove }
+const update = async (id, todo) => {
+  console.log(id, todo)
+  const { data: todoUpdated } = await axios.put(`${baseUrl}/${id}`, todo)
+  return todoUpdated
+}
+
+export default { getAll, create, remove, update }
