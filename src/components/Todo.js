@@ -1,11 +1,37 @@
 import React from 'react'
 
-const Todo = ({ todo }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons'
+
+const Todo = ({ todo, removeTodo }) => {
   const { id, content, isCompleted } = todo
+
+  const handleRemove = async () => {
+    if (window.confirm(`delete ${content}`)) {
+      try {
+        await removeTodo(id)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   return (
-    <h4>
-      {id} {content} {isCompleted}
-    </h4>
+    <section>
+      <div>
+        <h4>
+          {id} {content} {isCompleted}
+        </h4>
+      </div>
+      <div>
+        <button onClick={handleRemove}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <button>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+      </div>
+    </section>
   )
 }
 

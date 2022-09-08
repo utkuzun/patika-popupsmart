@@ -12,4 +12,9 @@ const create = async (todo) => {
   return todoAdded
 }
 
-export default { getAll, create }
+const remove = async (id) => {
+  const { data: todoRemoved } = await axios.delete(`${baseUrl}/${id}`)
+  return todoRemoved
+}
+
+export default { getAll, create, remove }

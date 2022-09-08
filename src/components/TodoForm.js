@@ -7,6 +7,7 @@ const TodoForm = ({ addTodo }) => {
     e.preventDefault()
     try {
       await addTodo(content)
+      setContent('')
     } catch (error) {
       console.log(error)
     }

@@ -20,10 +20,16 @@ function App() {
     setTodos([...todos, todoAdded])
   }
 
+  const removeTodo = async (id) => {
+    await todosServices.remove(id)
+    const newTodos = todos.filter((todo) => todo.id !== id)
+    setTodos(newTodos)
+  }
+
   return (
     <div className='App'>
       <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} removeTodo={removeTodo} />
     </div>
   )
 }
