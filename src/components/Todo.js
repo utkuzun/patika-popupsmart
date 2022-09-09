@@ -38,18 +38,18 @@ const Todo = ({ todo, removeTodo, setFormToUpdate, updateTodo }) => {
   }
 
   return (
-    <section>
-      <div className={`todo-content ${isCompleted ? 'completed' : ''}`}>
-        <h4>{content}</h4>
-      </div>
+    <article className='todo-item'>
+      <p className={`todo-content ${isCompleted ? 'completed' : ''}`}>
+        {content}
+      </p>
       <div>
-        <button onClick={handleRemove}>
+        <button className='icon-button delete' onClick={handleRemove}>
           <FontAwesomeIcon icon={faTrash} />
         </button>
-        <button onClick={handleUpdate}>
+        <button className='icon-button edit' onClick={handleUpdate}>
           <FontAwesomeIcon icon={faEdit} />
         </button>
-        <button onClick={updateIsComplete}>
+        <button className='icon-button mark' onClick={updateIsComplete}>
           {!isCompleted ? (
             <FontAwesomeIcon icon={faCheck} />
           ) : (
@@ -57,7 +57,7 @@ const Todo = ({ todo, removeTodo, setFormToUpdate, updateTodo }) => {
           )}
         </button>
       </div>
-    </section>
+    </article>
   )
 }
 

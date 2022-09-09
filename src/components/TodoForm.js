@@ -20,7 +20,6 @@ const TodoForm = forwardRef(({ addTodo, updateTodo }, refs) => {
 
     try {
       await updateTodo(editTodo.id, { ...editTodo, content })
-      e.preventDefault()
       setContent('')
       setMode('submit')
       setEditTodo({})
@@ -33,14 +32,19 @@ const TodoForm = forwardRef(({ addTodo, updateTodo }, refs) => {
     return { setMode, content, setContent, setEditTodo }
   })
   return (
-    <section>
+    <section className='flex-col'>
       <form onSubmit={mode === 'submit' ? handleSubmit : handleEdit}>
-        <input
-          type='text'
-          value={content}
-          minLength='3'
-          onChange={(e) => setContent(e.target.value)}
-        />
+        <div className='form-input'>
+          <label htmlFor='content'>{mode === 'submit' ? 'Add' : 'Edit'}</label>
+          <input
+            className='form-content'
+            type='text'
+            name='content'
+            value={content}
+            minLength='3'
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </div>
         <button type='submit'>{mode === 'submit' ? 'submit' : 'edit'}</button>
       </form>
     </section>
