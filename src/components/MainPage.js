@@ -2,12 +2,15 @@ import React, { useEffect, useState, useRef } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 
 import todosServices from '../services/todos'
 
-const MainPage = ({ user, toggleTheme }) => {
+const MainPage = ({ user, toggleTheme, theme }) => {
   const [todos, setTodos] = useState([])
 
   const formRef = useRef()
@@ -54,9 +57,15 @@ const MainPage = ({ user, toggleTheme }) => {
     <main className={'App'}>
       {user.username ? (
         <div className='nav-info'>
-          <div>
+          <div className='flex'>
             <p>welcome {user.username}</p>
-            <button onClick={toggleTheme}>mode</button>
+            <div className='theme-button flex' onClick={toggleTheme}>
+              <div
+                className={`slider ${theme === 'dark-theme' ? 'active' : ''}`}
+              ></div>
+              <FontAwesomeIcon icon={faSun} />
+              <FontAwesomeIcon icon={faMoon} />
+            </div>
           </div>
           <button onClick={logout}>logout</button>
         </div>

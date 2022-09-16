@@ -44,7 +44,9 @@ const App = () => {
       <Route path='/login' element={<Login setUser={setUser} />} />
       <Route
         path='/'
-        element={<MainPage user={user} toggleTheme={toggleTheme} />}
+        element={
+          <MainPage user={user} toggleTheme={toggleTheme} theme={theme} />
+        }
       />
     </Routes>
   )
