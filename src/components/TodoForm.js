@@ -1,13 +1,24 @@
 /* eslint-disable react/display-name */
 import React, { useState, useImperativeHandle, forwardRef } from 'react'
+import { useGlobalContext } from '../context'
 
 const TodoForm = forwardRef(({ addTodo, updateTodo }, refs) => {
   const [content, setContent] = useState('')
   const [editTodo, setEditTodo] = useState({})
   const [mode, setMode] = useState('submit')
 
+  const { displayError } = useGlobalContext()
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if (content.length < 3) {
+      const message = 'Please enter a todo has letters more than 3!!'
+      displayError({ message, type: 'error' })
+
+      return
+    }
+
     try {
       await addTodo(content)
       setContent('')

@@ -215,6 +215,33 @@ form {
   width: 50%;
 }
 
+.info-section {
+  width: 100%;
+  position: absolute;
+  top: 1.5rem;
+  justify-content: center;
+}
+
+.info-section p {
+  font-size: 1rem;
+  color: green;
+  border: 2px solid green;
+  border-radius: 0.3rem;
+  width: 70%;
+  justify-content: flex-start;
+  padding: 0 3rem;
+}
+
+.info-section p.error {
+  color: red;
+  border: 2px solid red;
+}
+
+.info-section p.info {
+  color: blue;
+  border: 2px solid blue;
+}
+
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -260,7 +287,7 @@ form {
   color: hsl(125, 67%, 44%);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   p {
     font-size: 0.7rem;
   }
@@ -279,6 +306,14 @@ form {
 
   label,
   input {
+    font-size: 0.7rem;
+  }
+
+  .info-section p {
+    width: 90%;
+
+    color: red;
+    border: 2px solid red;
     font-size: 0.7rem;
   }
 }

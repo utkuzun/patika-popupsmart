@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useGlobalContext } from '../context'
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate()
 
   const [username, setUsername] = useState('')
+  const { displayError } = useGlobalContext()
 
   const handleLogin = (e) => {
+    e.preventDefault()
+
     if (username.length < 3) {
+      displayError({
+        message: 'Enter a username has letters more than 3!!',
+        type: 'error',
+      })
       return
     }
 
-    e.preventDefault()
     const user = { username }
     window.localStorage.setItem('userTodosPatika', JSON.stringify(user))
     setUser(user)

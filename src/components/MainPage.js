@@ -9,6 +9,7 @@ import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 
 import todosServices from '../services/todos'
+import { useGlobalContext } from '../context'
 
 const MainPage = ({ user, toggleTheme, theme }) => {
   const [todos, setTodos] = useState([])
@@ -16,6 +17,7 @@ const MainPage = ({ user, toggleTheme, theme }) => {
   const formRef = useRef()
 
   const navigate = useNavigate()
+  const { displayError } = useGlobalContext()
 
   useEffect(() => {
     todosServices.getAll().then((data) => setTodos(data))
@@ -25,12 +27,15 @@ const MainPage = ({ user, toggleTheme, theme }) => {
     const todoToAdd = { content, isCompleted: false }
     const todoAdded = await todosServices.create(todoToAdd)
 
+    displayError({ message: 'Todo added..', type: '' })
     setTodos([...todos, todoAdded])
   }
 
   const removeTodo = async (id) => {
     await todosServices.remove(id)
     const newTodos = todos.filter((todo) => todo.id !== id)
+    displayError({ message: 'Todo removed..', type: 'info' })
+
     setTodos(newTodos)
   }
 
@@ -45,6 +50,8 @@ const MainPage = ({ user, toggleTheme, theme }) => {
     const newTodos = todos.map((todo) =>
       todo.id === todoUpdated.id ? todoUpdated : todo
     )
+    displayError({ message: 'Todo updated..', type: 'info' })
+
     setTodos(newTodos)
   }
 
@@ -54,7 +61,7 @@ const MainPage = ({ user, toggleTheme, theme }) => {
   }
 
   return (
-    <main className={'App'}>
+    <main className='App'>
       {user.username ? (
         <div className='nav-info'>
           <div className='flex'>
