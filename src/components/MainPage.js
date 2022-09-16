@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
@@ -11,6 +11,8 @@ const MainPage = ({ user }) => {
   const [todos, setTodos] = useState([])
 
   const formRef = useRef()
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     todosServices.getAll().then((data) => setTodos(data))
@@ -43,12 +45,17 @@ const MainPage = ({ user }) => {
     setTodos(newTodos)
   }
 
+  const logout = () => {
+    window.localStorage.setItem('userTodosPatika', JSON.stringify({}))
+    navigate('/login')
+  }
+
   return (
     <main className='App'>
       {user.username ? (
         <div className='nav-info'>
           <p>welcome {user.username}</p>
-          <Link to='/login'>logout</Link>
+          <button onClick={logout}>logout</button>
         </div>
       ) : (
         <div className='nav-info'>

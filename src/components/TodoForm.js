@@ -4,8 +4,8 @@ import React, { useState, useImperativeHandle, forwardRef } from 'react'
 const TodoForm = forwardRef(({ addTodo, updateTodo }, refs) => {
   const [content, setContent] = useState('')
   const [editTodo, setEditTodo] = useState({})
-
   const [mode, setMode] = useState('submit')
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {

@@ -8,7 +8,7 @@ const Login = ({ setUser }) => {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    const user = { username, screenMode: 'ligth' }
+    const user = { username }
     window.localStorage.setItem('userTodosPatika', JSON.stringify(user))
     setUser(user)
     navigate('/')
@@ -22,7 +22,7 @@ const Login = ({ setUser }) => {
             className='form-content'
             type='text'
             value={username}
-            minLength='5'
+            minLength='3'
             onChange={(e) => setUsername(e.target.value)}
           />
           <button>login</button>
