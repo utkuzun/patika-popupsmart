@@ -4,14 +4,36 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
+
+.ligth-theme {
+  --clr-bck: hsl(210, 36%, 96%);
+  --clr-bck-section: #fff;
+  --clr-button: hsl(210, 36%, 96%);
+  --clr-button-border: hsl(209, 62%, 56%);
+  --clr-font: hsl(209, 74%, 20%);
+  --clr-primary: black;
+  --clr-primary-shade: gray;
+}
+
+.dark-theme {
+  --clr-bck: #141d26;
+  --clr-button: rgb(23, 94, 160);
+  --clr-button-border: hsla(200, 10%, 6%, 0.575);
+  --clr-bck-section: #243447;
+  --clr-font: #fff;
+  --clr-primary: #fff;
+  --clr-primary-shade: gray;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  color: hsl(209, 61%, 16%);
-  background-color: hsl(210, 36%, 96%);
+  color: var(--clr-font);
+  background-color: var(--clr-bck);
   line-height: 1.5;
   font-size: 1rem;
 }
@@ -109,9 +131,11 @@ section {
 button {
   border: none;
   padding: 0.2rem 0.5rem;
-  background: hsl(205, 90%, 88%);
+  background: var(--clr-button);
+  color: var(--clr-font);
+  border: 2px solid var(--clr-button-border);
   font-size: 1rem;
-  transition: all 0.3s ease;
+  border-radius: 0.3rem;
   text-transform: capitalize;
 }
 
@@ -132,7 +156,7 @@ button:hover {
 }
 
 form {
-  background: #fff;
+  background: var(--clr-bck-section);
   border-radius: 0.3rem;
   width: 70%;
   padding: 1rem;
@@ -171,20 +195,20 @@ form {
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  background: #fff;
+  background: var(--clr-bck-section);
   border-radius: 0.3rem;
   padding: 0.3rem 0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .todo-content {
-  color: black;
+  color: var(--clr-primary);
   width: 40%;
 }
 
 .todo-content.completed {
   text-decoration: line-through;
-  color: gray;
+  color: var(--clr-primary-shade);
 }
 
 .icon-button {

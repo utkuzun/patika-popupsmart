@@ -7,6 +7,10 @@ const Login = ({ setUser }) => {
   const [username, setUsername] = useState('')
 
   const handleLogin = (e) => {
+    if (username.length < 3) {
+      return
+    }
+
     e.preventDefault()
     const user = { username }
     window.localStorage.setItem('userTodosPatika', JSON.stringify(user))

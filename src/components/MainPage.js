@@ -7,7 +7,7 @@ import TodoList from './TodoList'
 
 import todosServices from '../services/todos'
 
-const MainPage = ({ user }) => {
+const MainPage = ({ user, toggleTheme }) => {
   const [todos, setTodos] = useState([])
 
   const formRef = useRef()
@@ -51,10 +51,13 @@ const MainPage = ({ user }) => {
   }
 
   return (
-    <main className='App'>
+    <main className={'App'}>
       {user.username ? (
         <div className='nav-info'>
-          <p>welcome {user.username}</p>
+          <div>
+            <p>welcome {user.username}</p>
+            <button onClick={toggleTheme}>mode</button>
+          </div>
           <button onClick={logout}>logout</button>
         </div>
       ) : (
