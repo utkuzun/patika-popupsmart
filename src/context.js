@@ -4,6 +4,7 @@ const AppContext = createContext()
 
 const AppProvider = ({ children }) => {
   const [error, setError] = useState({ message: '', type: '' })
+  const [user, setUser] = useState({})
 
   const displayError = ({ message, type }) => {
     setError({ message, type })
@@ -14,7 +15,7 @@ const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ error, displayError }}>
+    <AppContext.Provider value={{ error, displayError, user, setUser }}>
       {children}
     </AppContext.Provider>
   )

@@ -11,16 +11,27 @@ import TodoList from './TodoList'
 import todosServices from '../services/todos'
 import { useGlobalContext } from '../context'
 
-const MainPage = ({ user, toggleTheme, theme }) => {
+const MainPage = ({ toggleTheme, theme }) => {
   const [todos, setTodos] = useState([])
 
   const formRef = useRef()
 
   const navigate = useNavigate()
-  const { displayError } = useGlobalContext()
+  const { displayError, user, setUser } = useGlobalContext()
 
   useEffect(() => {
     todosServices.getAll().then((data) => setTodos(data))
+  }, [])
+
+  useEffect(() => {
+    const userExists = window.localStorage.getItem('userTodosPatika')
+
+    if (userExists) {
+      setUser(JSON.parse(userExists))
+      return
+    }
+
+    navigate('/login')
   }, [])
 
   const addTodo = async (content) => {
@@ -56,7 +67,7 @@ const MainPage = ({ user, toggleTheme, theme }) => {
   }
 
   const logout = () => {
-    window.localStorage.setItem('userTodosPatika', JSON.stringify({}))
+    window.localStorage.removeItem('userTodosPatika', JSON.stringify({}))
     navigate('/login')
   }
 

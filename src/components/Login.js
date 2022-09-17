@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGlobalContext } from '../context'
 
-const Login = ({ setUser }) => {
+const Login = () => {
   const navigate = useNavigate()
 
   const [username, setUsername] = useState('')
-  const { displayError } = useGlobalContext()
+  const { displayError, setUser } = useGlobalContext()
 
   const handleLogin = (e) => {
     e.preventDefault()

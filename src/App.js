@@ -18,16 +18,7 @@ const getTheme = () => {
 }
 
 const App = () => {
-  const [user, setUser] = useState({})
   const [theme, setTheme] = useState(getTheme())
-
-  useEffect(() => {
-    const userExists = window.localStorage.getItem('userTodosPatika')
-
-    if (userExists) {
-      setUser(JSON.parse(userExists))
-    }
-  }, [])
 
   useEffect(() => {
     document.documentElement.className = theme
@@ -41,12 +32,10 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path='/login' element={<Login setUser={setUser} />} />
+      <Route path='/login' element={<Login />} />
       <Route
         path='/'
-        element={
-          <MainPage user={user} toggleTheme={toggleTheme} theme={theme} />
-        }
+        element={<MainPage toggleTheme={toggleTheme} theme={theme} />}
       />
     </Routes>
   )
